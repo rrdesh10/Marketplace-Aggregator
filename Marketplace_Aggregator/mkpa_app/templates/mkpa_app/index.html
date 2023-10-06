@@ -2,8 +2,6 @@
 
 {% block body %}
 
-<h1>Welcome</h1></br>
-
 <div class="product-container flex">
     {% for product in products %}   
         <div class="product shadow-lg rounded-lg m-10 w-1/4">
@@ -21,7 +19,7 @@
                     ₹{{ product.price }}
                 </div>
                 <div class="mt-4">
-                    <a href="" class="bg-green-800 text-white px-4 py-2">View Details</a>
+                    <a href="{% url 'detail' product.id %}" class="bg-green-800 text-white px-4 py-2">View Details</a>
                 </div>
                 
             </div>
