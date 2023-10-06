@@ -1,0 +1,27 @@
+{% extends 'mkpa_app/base.html' %}
+
+{% block body %}
+
+<div class="flex p-10">
+    <div class="">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="">
+    </div>
+    <div class="pl-10">
+        <div class="mt-5 mb-4 text-3xl font-semibold">
+            {{ product.name}}
+        </div>
+        <div class="mb-4">
+            {{ product.description}}
+        </div>
+        <div class="mb-4 text-xl font-bold text-green-800">
+            ₹{{ product.price}}
+        </div>
+        <div>
+            <button id="check-button" class="text-white bg-green-700 px-4 py-2 rounded-sm font-bold">Buy</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
