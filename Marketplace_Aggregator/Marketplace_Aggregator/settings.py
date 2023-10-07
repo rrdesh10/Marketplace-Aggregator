@@ -124,3 +124,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+#Strip payment gateway
+
+STRIPE_SECERT_KEY = 'sk_test_51NxrsuSIElzIinEjodbRTEONux94874DOKRpvH6ucCLlV11p06BnLY1zYB3d0Y27bq0XCxpu0rGsOR3H8gFs1AqK00SCyvAJma'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51NxrsuSIElzIinEjoLrti1IiY7N05mWhttvqDaKnHtDE54iyD4PXiWnewQSUL68Geo2SrINKP42GB0dYxjnb4Qkq00mgW34jyH'
