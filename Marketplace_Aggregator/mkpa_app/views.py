@@ -21,11 +21,11 @@ def detail(request, id):
 
 @csrf_exempt
 def create_checkout_session(request, id):
-    request_data = json.load(request.body)
+    request_data = json.loads(request.body)
     product = Product.objects.get(id=id)
     stripe.api_key = settings.STRIPE_SECERT_KEY
     checkout_session = stripe.checkout.Session.create(
-        customer_email = request_data['email'],
+        customer_email = request.user.email,
         payment_method_types = ['card'],
         line_items = [
             {
@@ -47,7 +47,7 @@ def create_checkout_session(request, id):
     order.customer_email = request_data['email']
     order.product = product 
     order.amount = int(product.price)
-    order.stripe_payment_intent = checkout_session['payment_intent']
+    order.stripe_payment_intent = 'Rohit'
     order.save()
 
     return JsonResponse({'sessionId':checkout_session.id})
