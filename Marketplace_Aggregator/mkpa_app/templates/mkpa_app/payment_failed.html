@@ -2,6 +2,10 @@
 
 {% block body %}
 
-<h1>Payment failed</h1>
+<div class="grid place-items-center h-screen">
+    <div class="font-semibold text-4xl">Payment failed</div>
+    <a class="bg-gray-800 font-bold text-white px-4 py-2" href="{% url 'index' %}" download>Go back to home page</a>
+</div>
+<h1></h1>
 
 {% endblock %}
