@@ -1,0 +1,44 @@
+{% extends 'mkpa_app/base.html' %}
+
+{% block body %}
+
+<div class="w-1/2 m-10">
+    <h1 class="text-2xl font-bold m-5">Edit Product</h1>
+    <form class="shadow-lg p-10" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <div class="p-2">
+            <label class="font-semibold">Name:</label>
+            <div class="border rounded px-2 py-2 apperance-none mr-10">
+                {{ product_form.name }}
+            </div>
+        </div>
+        <div class="p-2">
+            <label class="font-semibold">Description:</label>
+            <div class="border rounded px-2 py-2 apperance-none mr-10">
+                {{ product_form.description }}
+            </div>
+        </div>
+        <div class="p-2">
+            <label class="font-semibold">Price:</label>
+            <div class="border rounded px-2 py-2 apperance-none mr-10">
+                {{ product_form.price }}
+            </div>
+        </div>
+        <div class="p-2">
+            <label class="font-semibold">Upload file:</label>
+            <div class="px-2 py-2 apperance-none mr-10">
+                {{ product_form.file }}
+            </div>
+        </div>
+
+        <button type="submit" class="bg-green-700 text-white font-bold px-4 py-2 rounded-sm m-3">Update</button>
+    
+    </form>
+</div>
+
+<div class="ml-20 mt-5">
+    <a href="{% url 'delete' product.id %}" class="bg-red-500 text-white font-bold px-6 py-3">Delete</a>
+</div>
+
+{% endblock %}
