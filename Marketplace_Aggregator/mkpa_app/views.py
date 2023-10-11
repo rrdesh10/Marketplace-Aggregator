@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from django.http import JsonResponse, HttpResponseNotFound
 from .models import Product, OrderDetail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import json
-import stripe
+from .forms import ProductForm
+import stripe, json
 
 
 def index(request):
@@ -68,3 +68,34 @@ def payment_success_view(request):
 
 def payment_failed_view(request):
     return render(request, 'mkpa_app/payment_failed.html')
+
+
+def create_product(request):
+    if request.method == "POST":
+        product_form = ProductForm(request.POST, request.FILES)
+        if product_form.is_valid():
+            new_product = product_form.save()
+            return redirect('index')
+
+    product_form = ProductForm()
+    return render(request, 'mkpa_app/create_product.html', {'product_form':product_form})
+
+
+def edit_product(request, id):
+    product = Product.objects.get(id=id)
+    product_form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+
+    if request.method == "POST":
+        if product_form.is_valid():
+            product_form.save()
+            return redirect('index')
+
+    return render(request, 'mkpa_app/edit_product.html', {'product_form':product_form, 'product':product})
+
+
+def delete_product(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == "POST":
+        product.delete()
+        return redirect('index')
+    return render(request, 'mkpa_app/delete_product.html', {'product':product})
