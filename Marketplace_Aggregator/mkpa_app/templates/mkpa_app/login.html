@@ -1,0 +1,27 @@
+{% extends 'mkpa_app/base.html' %}
+
+{% block body %}
+
+<div class="m-10 pt-3 m-5 px-4 text-xl font-bold">
+    User Login
+</div>
+
+<div class="container py-2 ml-3">
+    <form class="bg-white shadow-md m-7 w-2/6 pt-1 px-6 pb-8 mb-4 rounded " method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label class="block text-gray-700 text-md font-bold mb-4" for="">Username</label>
+            <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10 mb-4">{{ form.username}}</div>
+        </div>
+        <div class="mb-2">
+        <label class="block text-gray-700 text-md font-bold mb-4" for="">Password</label>
+        <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.password}}</div>
+        </div>
+        
+        <button class="text-white bg-green-800 py-2 px-4 m-3 font-bold rounded">Login</button>
+    </form>
+
+    <p class="m-10">New to website? <span><a href="{% url 'register' %}" class="text-blue-700">Click here</a> to register</span></p>
+</div>
+
+{% endblock %}

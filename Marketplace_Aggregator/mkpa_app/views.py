@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponseNotFound
 from .models import Product, OrderDetail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ProductForm
+from .forms import ProductForm, RegistrationForm
 import stripe, json
 
 
@@ -99,3 +99,20 @@ def delete_product(request, id):
         product.delete()
         return redirect('index')
     return render(request, 'mkpa_app/delete_product.html', {'product':product})
+
+
+def dashboard(request):
+    products = Product.objects.all()
+    return render(request, 'mkpa_app/dashboard.html', {'products':products})
+
+
+def register_view(request):
+    if request.method == "POST":
+        register_form = RegistrationForm(request.POST)
+        new_user = register_form.save(commit=False)
+        new_user.set_password(register_form.cleaned_data['password'])
+        new_user.save()
+        return redirect('login')
+
+    register_form = RegistrationForm()
+    return render(request, 'mkpa_app/register.html', {'register_form':register_form})
