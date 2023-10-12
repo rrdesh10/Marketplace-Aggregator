@@ -1,0 +1,46 @@
+{% extends 'mkpa_app/base.html' %}
+
+{% block body %}
+
+<div class="flex justify-between">
+    <div class="ml-20 mt-10 font-bold text-2xl">My Products</div>
+    <div class="ml-20 mt-10 mr-8">
+        <a href="{% url 'create' %}" class="bg-gray-800 text-white font-bold px-4 py-2 rounded-sm">New Product</a>
+    </div>
+</div>
+<div class="product-container m-5 p-10">
+    {% for product in products %}
+        <div class="flex shadow-lg justify-between m-3">
+            <div class="flex w-1/4 ml-5 p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" class="h-20">
+            
+                <div class="relative group">
+                    <a href="{% url 'edit' product.id %}">
+                    <div class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 p-6 justify-center items-end bg-white font-semibold">
+                        Edit Product
+                    </div>
+                    <div class="ml-5 p-3">
+                        <div class="font-semibold">{{ product.name }}</div>
+                        <div class="font-semibold">₹ {{ product.price }}</div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+           
+            <div class="p-3">
+                <div class="text-xl font-semibold">200</div>
+                <div class="text-xs">Total Earnings</div>
+            </div>
+            <div class="p-3">
+                <div class="text-xl font-semibold">25</div>
+                <div class="text-xs">Total Orders</div>
+            </div>
+            <div class="p-3">
+                <div class="text-xl font-semibold">4.7</div>
+                <div class="text-xs">Ratings</div>
+            </div>
+        </div>
+        
+    {% endfor %}
+</div>
+{% endblock %}
