@@ -12,7 +12,10 @@ urlpatterns = [
     path('edit/<int:id>', views.edit_product, name='edit'),
     path('delete/<int:id>', views.delete_product, name='delete'),
     path('dashboard', views.dashboard, name='dashboard'),
+    path('sales', views.sales, name='sales'),
+    path('purchase', views.my_purchase, name='purchase'),
     path('register', views.register_view, name='register'),
+    path('invalid', views.invalid, name='invalid'),
     path('login', LoginView.as_view(template_name='mkpa_app/login.html'), name='login'),
     path('logout', LogoutView.as_view(template_name='mkpa_app/logout.html'), name='logout'),
 ]
