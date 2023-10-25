@@ -166,6 +166,10 @@ def sales(request):
     weekly_sales = data.aggregate(Sum('amount'))
 
     daily_sales_sums = OrderDetail.objects.filter(product__seller=request.user).values('created_on__date').order_by('created_on__date').annotate(sum=Sum('amount'))
+    
+    # Product wise sales
+    product_sales_sums = OrderDetail.objects.filter(product__seller=request.user).values('product__name').order_by('product__name').annotate(sum=Sum('amount'))
 
     return render(request, 'mkpa_app/sales.html', {'total_earnings':total_earnings, 'yearly_sales':yearly_sales,
-                                                    'monthly_sales':monthly_sales, 'weekly_sales':weekly_sales, 'daily_sales_sums':daily_sales_sums})
+                                                    'monthly_sales':monthly_sales, 'weekly_sales':weekly_sales, 
+                                                    'daily_sales_sums':daily_sales_sums, 'product_sales_sums':product_sales_sums})
